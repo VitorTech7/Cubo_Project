@@ -1,32 +1,37 @@
 package com.cubo.cubo_project.api.controller;
 
-import com.cubo.cubo_project.infraestructure.model.HotelCaliforniaModel;
-import com.cubo.cubo_project.infraestructure.repository.HotelCaliforniaRepository;
-import org.springframework.beans.BeanUtils;
+import com.cubo.cubo_project.api.model.HotelCaliforniaModel;
+import com.cubo.cubo_project.api.service.HotelCaliforniaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/hoteis")
+@RequestMapping("/hotel")
 public class HotelCaliforniaController {
-
     @Autowired
-    private HotelCaliforniaRepository hotelCaliforniaRepository;
+    private HotelCaliforniaService hotelCaliforniaService;
 
+    @GetMapping
+    public List<HotelCaliforniaModel> listarHotéis() {
+        return hotelCaliforniaService.listarHotéis();
+    }
 
-    @DeleteMapping("/{id}")
-    public void deleteHotel(@PathVariable UUID id) {
-        hotelCaliforniaRepository.deleteById(id);
+    @PostMapping
+    public HotelCaliforniaModel salvarHotel(@RequestBody HotelCaliforniaModel hotel) {
+        return hotelCaliforniaService.salvarHotel(hotel);
     }
 
     @PutMapping("/{id}")
-    public HotelCaliforniaModel updateHotel(@PathVariable UUID id, @RequestBody HotelCaliforniaModel hotelNovo) {
-        HotelCaliforniaModel hotelAtual = hotelCaliforniaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Hotel não encontrado!"));
-        BeanUtils.copyProperties(hotelNovo, hotelAtual, "id");
-        return hotelCaliforniaRepository.save(hotelAtual);
+    public HotelCaliforniaModel atualizarHotel(@PathVariable UUID id, @RequestBody HotelCaliforniaModel hotel) {
+        return hotelCaliforniaService.atualizarHotel(id, hotel);
     }
 
+    @DeleteMapping("/{id}")
+    public void deletarHotel(@PathVariable UUID id) {
+        hotelCaliforniaService.deletarHotel(id);
+    }
 }
+
