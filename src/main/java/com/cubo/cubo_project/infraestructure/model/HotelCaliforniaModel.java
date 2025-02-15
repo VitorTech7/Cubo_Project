@@ -1,19 +1,17 @@
 package com.cubo.cubo_project.infraestructure.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
 @Builder
-
 @Table(name = "hotel_california")
 public class HotelCaliforniaModel {
 
