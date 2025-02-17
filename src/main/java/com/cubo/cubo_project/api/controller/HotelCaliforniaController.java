@@ -3,35 +3,53 @@ package com.cubo.cubo_project.api.controller;
 import com.cubo.cubo_project.api.model.HotelCaliforniaModel;
 import com.cubo.cubo_project.api.service.HotelCaliforniaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
-@RequestMapping("/hotel")
+@RequestMapping(value = "/hoteis")
 public class HotelCaliforniaController {
     @Autowired
     private HotelCaliforniaService hotelCaliforniaService;
 
+//    @GetMapping
+//    public List<HotelCaliforniaModel> listarHoteis() {
+//        return hotelCaliforniaService.listarHoteis();
+//    }
     @GetMapping
-    public List<HotelCaliforniaModel> listarHotéis() {
-        return hotelCaliforniaService.listarHotéis();
+    public ResponseEntity<List<HotelCaliforniaModel>> listarHoteis(){
+        return ResponseEntity.ok().body(hotelCaliforniaService.listarHoteis());
     }
+
+    //Listar por id
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<HotelCaliforniaModel> listarHotelPorId(@PathVariable Long id){
+        return ResponseEntity.ok().body(hotelCaliforniaService.listarHotelPorId(id));
+    }
+
+//    @PostMapping
+//    public HotelCaliforniaModel salvarHotel(@RequestBody HotelCaliforniaModel hotel) {
+//        return hotelCaliforniaService.salvarHotel(hotel);
+//    }
 
     @PostMapping
-    public HotelCaliforniaModel salvarHotel(@RequestBody HotelCaliforniaModel hotel) {
-        return hotelCaliforniaService.salvarHotel(hotel);
+    public ResponseEntity<HotelCaliforniaModel>criarHotel(@RequestBody HotelCaliforniaModel hotel){
+        return ResponseEntity.status(HttpStatus.CREATED).body(hotelCaliforniaService.criarHotel(hotel));
     }
 
-    @PutMapping("/{id}")
-    public HotelCaliforniaModel atualizarHotel(@PathVariable UUID id, @RequestBody HotelCaliforniaModel hotel) {
+    @PutMapping(value = "/{id}")
+    public HotelCaliforniaModel atualizarHotel(@PathVariable Long id, @RequestBody HotelCaliforniaModel hotel) {
         return hotelCaliforniaService.atualizarHotel(id, hotel);
     }
 
-    @DeleteMapping("/{id}")
-    public void deletarHotel(@PathVariable UUID id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletarHotel(@PathVariable Long id) {
         hotelCaliforniaService.deletarHotel(id);
+        return ResponseEntity.noContent().build();
     }
 }
 

@@ -1,0 +1,3 @@
+2025-02-16 00:56:47.895709-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HOTEL_CALIFORNIA" not found; SQL statement:
+select hcm1_0.id,hcm1_0.capacidade,hcm1_0.cnpj,hcm1_0.local,hcm1_0.nome from hotel_california hcm1_0 [42102-232]
