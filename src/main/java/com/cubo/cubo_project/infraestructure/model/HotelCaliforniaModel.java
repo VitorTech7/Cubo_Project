@@ -1,4 +1,4 @@
-package com.cubo.cubo_project.api.model;
+package com.cubo.cubo_project.infraestructure.model;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,7 +1,7 @@
 package com.cubo.cubo_project.api.controller;
 
-import com.cubo.cubo_project.api.model.HotelCaliforniaModel;
-import com.cubo.cubo_project.api.service.HotelCaliforniaService;
+import com.cubo.cubo_project.infraestructure.model.HotelCaliforniaModel;
+import com.cubo.cubo_project.infraestructure.service.HotelCaliforniaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,6 @@ public class HotelCaliforniaController {
     @Autowired
     private HotelCaliforniaService hotelCaliforniaService;
 
-//    @GetMapping
-//    public List<HotelCaliforniaModel> listarHoteis() {
-//        return hotelCaliforniaService.listarHoteis();
-//    }
     @GetMapping
     public ResponseEntity<List<HotelCaliforniaModel>> listarHoteis(){
         return ResponseEntity.ok().body(hotelCaliforniaService.listarHoteis());
@@ -30,11 +26,6 @@ public class HotelCaliforniaController {
     public ResponseEntity<HotelCaliforniaModel> listarHotelPorId(@PathVariable Long id){
         return ResponseEntity.ok().body(hotelCaliforniaService.listarHotelPorId(id));
     }
-
-//    @PostMapping
-//    public HotelCaliforniaModel salvarHotel(@RequestBody HotelCaliforniaModel hotel) {
-//        return hotelCaliforniaService.salvarHotel(hotel);
-//    }
 
     @PostMapping
     public ResponseEntity<HotelCaliforniaModel>criarHotel(@RequestBody HotelCaliforniaModel hotel){

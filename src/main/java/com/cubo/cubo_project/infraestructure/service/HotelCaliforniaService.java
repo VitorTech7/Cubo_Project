@@ -1,7 +1,7 @@
-package com.cubo.cubo_project.api.service;
+package com.cubo.cubo_project.infraestructure.service;
 
-import com.cubo.cubo_project.api.model.HotelCaliforniaModel;
-import com.cubo.cubo_project.api.repository.HotelCaliforniaRepository;
+import com.cubo.cubo_project.infraestructure.model.HotelCaliforniaModel;
+import com.cubo.cubo_project.infraestructure.repository.HotelCaliforniaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
