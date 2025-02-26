@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HotelCaliforniaRepository extends JpaRepository<HotelCaliforniaModel, Long> {
+
+    boolean existsByCnpj(String cnpj);
 }
