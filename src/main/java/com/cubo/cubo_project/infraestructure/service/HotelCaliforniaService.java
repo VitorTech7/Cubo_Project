@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HotelCaliforniaService {
@@ -23,6 +24,9 @@ public class HotelCaliforniaService {
                 .orElseThrow(() -> new RuntimeException("Hotel com ID " + id + " não encontrado!"));
     }
 
+    public Optional<HotelCaliforniaModel> findByCnpj(String cnpj){
+        return hotelCaliforniaRepository.findByCnpj(cnpj);
+    }
 
     @Transactional
     public HotelCaliforniaModel criarHotel(HotelCaliforniaModel hotel) {

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -22,10 +23,17 @@ public class HotelCaliforniaController {
     }
 
     //Listar por id
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<HotelCaliforniaModel> listarHotelPorId(@PathVariable Long id){
+    @GetMapping(value = "/id/{id}")
+    public ResponseEntity<HotelCaliforniaModel> listarHotelPorId(@PathVariable(value = "id") Long id){
         return ResponseEntity.ok().body(hotelCaliforniaService.listarHotelPorId(id));
     }
+
+    @GetMapping(value = "/cnpj/{cnpj}")
+    public ResponseEntity<Object> findByCnpj(@PathVariable(value = "cnpj") String cnpj) {
+        Optional<HotelCaliforniaModel> hotelOptional = hotelCaliforniaService.findByCnpj(cnpj);
+        return ResponseEntity.status(HttpStatus.OK).body(hotelOptional.get());
+    }
+
 
     @PostMapping
     public ResponseEntity<HotelCaliforniaModel>criarHotel(@RequestBody HotelCaliforniaModel hotel){
