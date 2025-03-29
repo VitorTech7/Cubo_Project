@@ -1,6 +1,8 @@
 package com.cubo.cubo_project.api.dto;
 
 import com.cubo.cubo_project.infraestructure.model.HotelCaliforniaModel;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 
@@ -9,12 +11,18 @@ public class HotelCaliforniaDto implements Serializable {
 
     private Long id;
 
+    @NotNull(message = "Nome do Hotel é obrigatório.")
+    @Size(min = 1, max = 100, message = "Nome do hotel deve ter entre 1 e 100 caracteres.")
     private String nome;
 
+    @NotNull(message = "Local do Hotel é obrigatório.")
     private String local;
 
+    @NotNull(message = "Capacidade do Hotel é obrigatório.")
     private int capacidade;
 
+    @NotNull(message = "CNPJ do Hotel é obrigatório.")
+    @Size(min = 14, max = 14, message = "CNPJ do hotel deve ter 14 caracteres")
     private String cnpj;
 
     public HotelCaliforniaDto() {

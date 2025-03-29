@@ -3,6 +3,7 @@ package com.cubo.cubo_project.api.controller;
 import com.cubo.cubo_project.api.dto.HotelCaliforniaDto;
 import com.cubo.cubo_project.infraestructure.model.HotelCaliforniaModel;
 import com.cubo.cubo_project.infraestructure.service.HotelCaliforniaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +40,7 @@ public class HotelCaliforniaController {
 
 
     @PostMapping
-    public ResponseEntity<HotelCaliforniaDto> criarHotel(@RequestBody HotelCaliforniaDto hotelDto) {
+    public ResponseEntity<HotelCaliforniaDto> criarHotel(@Valid @RequestBody HotelCaliforniaDto hotelDto) {
         HotelCaliforniaDto savedHotel = hotelCaliforniaService.criarHotel(hotelDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedHotel);
     }
